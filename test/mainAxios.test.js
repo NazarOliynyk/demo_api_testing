@@ -17,7 +17,7 @@ describe('Try rest api testing with Axios', function(){
                 assert.notEqual(0, response.data.rates.PLN);
                 assert.notEqual(0, response.data.rates.UAH);
             
-        })
+        }).catch(error => console.error(error))
     });
 
     it('Verify call to the resource with non-default base currency', () =>{
@@ -29,7 +29,7 @@ describe('Try rest api testing with Axios', function(){
                 assert.isNotNull(response.data.error);
                 assert.equal(105, response.data.error.code);
                 assert.equal("base_currency_access_restricted", response.data.error.type);        
-        })
+        }).catch(error => console.error(error))
     });
 
     it('Verify call to the resource with the wrong access key', () =>{
@@ -41,7 +41,7 @@ describe('Try rest api testing with Axios', function(){
                 assert.isNotNull(response.data.error);
                 assert.equal(101, response.data.error.code);
                 assert.equal("invalid_access_key", response.data.error.type);        
-        })
+        }).catch(error => console.error(error))
     });
 
     it('Verify call to the resource with invalid date', () =>{
@@ -53,7 +53,7 @@ describe('Try rest api testing with Axios', function(){
                 assert.isNotNull(response.data.error);
                 assert.equal(302, response.data.error.code);
                 assert.equal("invalid_date", response.data.error.type);        
-        })
+        }).catch(error => console.error(error))
     });
 
     it('Verify call to the resource with the incomplete set of symbols (missing UAH)', () =>{
@@ -67,7 +67,7 @@ describe('Try rest api testing with Axios', function(){
                 assert.notEqual(0, response.data.rates.USD);
                 assert.notEqual(0, response.data.rates.PLN);
                 assert.equal(undefined, response.data.rates.UAH);        
-        })
+        }).catch(error => console.error(error))
     });
 
 })

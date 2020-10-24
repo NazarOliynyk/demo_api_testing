@@ -10,6 +10,6 @@ describe("Try plain node request", function(){
             function(error, response, body){
                 expect(response.statusCode).to.equal(200);
                     console.log(response.body);
-        });
+        })
     });
 })
