@@ -9,8 +9,8 @@ describe('Try rest api testing with Axios', function(){
 
             axios.get(urlBuilder.build(urlBuilder.baseurl, urlBuilder.latestDate, urlBuilder.validAccessKey, "", urlBuilder.defaultSymbols))
             .then((response) => {
-                assert.equal(200, response.status);
-                assert.equal(true, response.data.success);
+                assert.equal(200, response.status, " Response status not OK !!");
+                assert.equal(true, response.data.success, " Rates not success !!");
                 assert.equal('EUR', response.data.base);
                 assert.equal(1, response.data.rates.EUR);
                 assert.notEqual(0, response.data.rates.USD);
@@ -24,8 +24,8 @@ describe('Try rest api testing with Axios', function(){
         
             axios.get(urlBuilder.build(urlBuilder.baseurl, urlBuilder.latestDate, urlBuilder.validAccessKey, urlBuilder.nonDefaultCurrency, urlBuilder.defaultSymbols))
             .then((response) => {
-                assert.equal(200, response.status);
-                assert.equal(false, response.data.success);
+                assert.equal(200, response.status, " Response status not OK !!");
+                assert.equal(false, response.data.success, " Rates is success !!");
                 assert.isNotNull(response.data.error);
                 assert.equal(105, response.data.error.code);
                 assert.equal("base_currency_access_restricted", response.data.error.type);        
@@ -36,8 +36,8 @@ describe('Try rest api testing with Axios', function(){
         
             axios.get(urlBuilder.build(urlBuilder.baseurl, urlBuilder.latestDate, urlBuilder.malformedAccessKey, "", urlBuilder.defaultSymbols))
             .then((response) => {
-                assert.equal(200, response.status);
-                assert.equal(false, response.data.success);
+                assert.equal(200, response.status, " Response status not OK !!");
+                assert.equal(false, response.data.success, " Rates is success !!");
                 assert.isNotNull(response.data.error);
                 assert.equal(101, response.data.error.code);
                 assert.equal("invalid_access_key", response.data.error.type);        
@@ -48,8 +48,8 @@ describe('Try rest api testing with Axios', function(){
         
             axios.get(urlBuilder.build(urlBuilder.baseurl, urlBuilder.invalidDate, urlBuilder.validAccessKey, "", urlBuilder.defaultSymbols))
             .then((response) => {
-                assert.equal(200, response.status);
-                assert.equal(false, response.data.success);
+                assert.equal(200, response.status, " Response status not OK !!");
+                assert.equal(false, response.data.success, " Rates is success !!");
                 assert.isNotNull(response.data.error);
                 assert.equal(302, response.data.error.code);
                 assert.equal("invalid_date", response.data.error.type);        
@@ -60,8 +60,8 @@ describe('Try rest api testing with Axios', function(){
         
             axios.get(urlBuilder.build(urlBuilder.baseurl, urlBuilder.latestDate, urlBuilder.validAccessKey, "", urlBuilder.incompleteSymbols))
             .then((response) => {
-                assert.equal(200, response.status);
-                assert.equal(true, response.data.success);
+                assert.equal(200, response.status, " Response status not OK !!");
+                assert.equal(true, response.data.success, " Rates not success !!");
                 assert.equal('EUR', response.data.base);
                 assert.equal(1, response.data.rates.EUR);
                 assert.notEqual(0, response.data.rates.USD);
